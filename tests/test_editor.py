@@ -2,6 +2,7 @@
 from editor import Editor 
 import unittest
 from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QFont
 
 
 app = QApplication([])
@@ -20,7 +21,18 @@ class TestEditor(unittest.TestCase):
         test_text = "This is a test text."
         self.editor.setPlainText(test_text)
         self.assertEqual(self.editor.toPlainText(), test_text)
+    
+    def test_editor_font_family(self):
+        doc = self.editor.document()
+        font = doc.defaultFont()
+        font_family = font.family()
+        self.assertEqual(font_family, "Courier New")
 
+    def test_editor_font_size(self):
+        doc = self.editor.document()
+        font = doc.defaultFont()
+        font_size = font.pointSize()
+        self.assertEqual(font_size, 11)
 
 
 if __name__ == '__main__':
