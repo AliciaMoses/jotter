@@ -2,11 +2,9 @@
 from editor import Editor 
 import unittest
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtGui import QFont
 
 
 app = QApplication([])
-
 
 class TestEditor(unittest.TestCase):
 

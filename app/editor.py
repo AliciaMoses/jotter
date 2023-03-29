@@ -14,53 +14,6 @@ class Editor(QPlainTextEdit):
         font = doc.defaultFont()
         font.setFamily("Courier New")
         font.setPointSize(11)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         doc.setDefaultFont(font)
 
 
