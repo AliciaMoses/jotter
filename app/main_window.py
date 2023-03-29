@@ -6,20 +6,15 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
 
         self.setGeometry(100, 100, 600, 400)
-
+        self.setWindowOpacity(0.9)
         layout = QVBoxLayout()
-
-    
         self.editor = Editor()
         self.path = None
-
         layout.addWidget(self.editor)
-
         container = QWidget()
-
         container.setLayout(layout)
-
         self.setCentralWidget(container)
 
         self.show()
 
+        
