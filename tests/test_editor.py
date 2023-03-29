@@ -15,6 +15,11 @@ class TestEditor(unittest.TestCase):
     def test_editor_initial_state(self):
       
         self.assertEqual(self.editor.toPlainText(), "")
+    
+    def test_editor_add_text(self):
+        test_text = "This is a test text."
+        self.editor.setPlainText(test_text)
+        self.assertEqual(self.editor.toPlainText(), test_text)
 
 
 
