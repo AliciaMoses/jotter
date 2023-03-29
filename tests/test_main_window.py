@@ -1,5 +1,6 @@
 import unittest
 from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QAction
 from main_window import MainWindow
 
 app = QApplication([])
@@ -18,6 +19,26 @@ class TestMainWindow(unittest.TestCase):
         test_opacity = 0.5
         self.main_window.setWindowOpacity(test_opacity)
         self.assertAlmostEqual(self.main_window.windowOpacity(), test_opacity, places=2)
+
+    def test_open_file_action_connection(self):
+        open_file_action = QAction()
+        open_file_action.triggered.connect(self.main_window.file_handler.file_open)
+        self.assertEqual(open_file_action.receivers(open_file_action.triggered), 1)
+
+    def test_save_file_action_connection(self):
+        save_file_action = QAction()
+        save_file_action.triggered.connect(self.main_window.file_handler.file_save)
+        self.assertEqual(save_file_action.receivers(save_file_action.triggered), 1)
+
+    def test_saveas_file_action_connection(self):
+        saveas_file_action = QAction()
+        saveas_file_action.triggered.connect(self.main_window.file_handler.file_saveas)
+        self.assertEqual(saveas_file_action.receivers(saveas_file_action.triggered), 1)
+
+    def test_print_action_connection(self):
+        print_action = QAction()
+        print_action.triggered.connect(self.main_window.file_handler.file_print)
+        self.assertEqual(print_action.receivers(print_action.triggered), 1)
 
 if __name__ == '__main__':
     unittest.main()
