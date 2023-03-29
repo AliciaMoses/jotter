@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QToolBar
 from PyQt6.QtGui import QAction
 from editor import Editor
 from file_handler import FileHandler
-
+from clipboard_handler import ClipboardHandler
 
 
 class MainWindow(QMainWindow):
@@ -15,6 +15,7 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout()
         self.editor = Editor()
         self.file_handler = FileHandler(self.editor, self)
+        self.clipboard_handler = ClipboardHandler(self.editor)
         self.path = None
         layout.addWidget(self.editor)
         container = QWidget()
@@ -28,6 +29,7 @@ class MainWindow(QMainWindow):
         file_toolbar = QToolBar("File")
         self.addToolBar(file_toolbar)
         file_menu = self.menuBar().addMenu("&File")
+        edit_menu = self.menuBar().addMenu("&Edit")
 
         open_file_action = QAction("Open file", self)
         open_file_action.setStatusTip("Open file")
@@ -52,5 +54,20 @@ class MainWindow(QMainWindow):
         print_action.triggered.connect(self.file_handler.file_print)
         file_menu.addAction(print_action)
         file_toolbar.addAction(print_action)
+
+        cut_action = QAction("Cut", self)
+        cut_action.setStatusTip("Cut selected text")
+        cut_action.triggered.connect(self.clipboard_handler.cut)
+        edit_menu.addAction(cut_action)
+
+        copy_action = QAction("Copy", self)
+        copy_action.setStatusTip("Copy selected text")
+        copy_action.triggered.connect(self.clipboard_handler.copy)
+        edit_menu.addAction(copy_action)
+
+        paste_action = QAction("Paste", self)
+        paste_action.setStatusTip("Paste from clipboard")
+        paste_action.triggered.connect(self.clipboard_handler.paste)
+        edit_menu.addAction(paste_action)
 
         
