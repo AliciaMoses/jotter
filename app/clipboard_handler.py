@@ -13,3 +13,9 @@ class ClipboardHandler:
 
     def paste(self):
         self.editor.paste()
+
+    def undo(self):
+        self.editor.undo()
+
+    def redo(self):
+        self.editor.redo()

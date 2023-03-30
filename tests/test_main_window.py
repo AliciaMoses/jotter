@@ -40,5 +40,17 @@ class TestMainWindow(unittest.TestCase):
         print_action.triggered.connect(self.main_window.file_handler.file_print)
         self.assertEqual(print_action.receivers(print_action.triggered), 1)
 
+    def test_undo_action_connection(self):
+        undo_action = QAction()
+        undo_action.triggered.connect(self.main_window.editor.undo)
+        self.assertEqual(undo_action.receivers(undo_action.triggered), 1)
+
+    def test_redo_action_connection(self):
+        redo_action = QAction()
+        redo_action.triggered.connect(self.main_window.editor.redo)
+        self.assertEqual(redo_action.receivers(redo_action.triggered), 1)
+
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
 
     def _create_menus_and_toolbars(self):
         file_toolbar = QToolBar("File")
+
         self.addToolBar(file_toolbar)
         file_menu = self.menuBar().addMenu("&File")
         edit_menu = self.menuBar().addMenu("&Edit")
@@ -69,5 +70,22 @@ class MainWindow(QMainWindow):
         paste_action.setStatusTip("Paste from clipboard")
         paste_action.triggered.connect(self.clipboard_handler.paste)
         edit_menu.addAction(paste_action)
+
+
+        undo_action = QAction("Undo", self)
+        undo_action.setStatusTip("Undo the last action")
+        undo_action.triggered.connect(self.editor.undo)
+        edit_menu.addAction(undo_action)
+        file_toolbar.addAction(undo_action)
+
+        redo_action = QAction("Redo", self)
+        redo_action.setStatusTip("Redo the last undone action")
+        redo_action.triggered.connect(self.editor.redo)
+        edit_menu.addAction(redo_action)
+        file_toolbar.addAction(redo_action)
+
+
+
+
 
         
