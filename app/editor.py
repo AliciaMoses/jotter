@@ -59,7 +59,7 @@ class Editor(QPlainTextEdit):
 
     def line_number_area_paint_event(self, event):
         painter = QPainter(self.line_number_area)
-        painter.fillRect(event.rect(), Qt.GlobalColor.lightGray)
+        painter.fillRect(event.rect(), Qt.GlobalColor.white)
 
         block = self.firstVisibleBlock()
         block_number = block.blockNumber()
